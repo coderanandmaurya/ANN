@@ -1,3 +1,12 @@
+Absolutely! Here's a **step-by-step annotated version** of the **Cat vs Dog CNN classifier**, written for **Google Colab** with **detailed explanations in comments** for each step.
+
+Just copy and paste this code block into Google Colab and run it.
+
+---
+
+## 🐶🐱 Cat vs Dog Classification Using CNN – Step-by-Step with Comments
+
+```python
 # Step 1: Import required libraries
 # TensorFlow is used for building and training the neural network
 # Matplotlib is used to visualize the training progress
@@ -99,3 +108,49 @@ plt.legend()
 
 plt.tight_layout()
 plt.show()
+```
+
+---
+
+## 🔍 What You Learned:
+
+| Step     | Description                                               |
+| -------- | --------------------------------------------------------- |
+| ✅ Step 1 | Loaded required libraries                                 |
+| ✅ Step 2 | Downloaded and extracted the Cats vs Dogs dataset         |
+| ✅ Step 3 | Rescaled images and organized them into generators        |
+| ✅ Step 4 | Built a 3-layer CNN model                                 |
+| ✅ Step 5 | Compiled the model using `adam` and `binary_crossentropy` |
+| ✅ Step 6 | Trained the model on images of cats and dogs              |
+| ✅ Step 7 | Plotted training vs validation performance                |
+
+---
+
+# Step 8: Upload and Predict a Custom Image
+from google.colab import files
+from tensorflow.keras.preprocessing import image
+import numpy as np
+
+# Upload an image file
+uploaded = files.upload()
+
+# Loop through uploaded images and make predictions
+for img_name in uploaded.keys():
+    # Load the image and resize to model input size
+    img_path = img_name
+    img = image.load_img(img_path, target_size=(IMG_SIZE, IMG_SIZE))
+    
+    # Convert image to array and normalize pixel values
+    img_array = image.img_to_array(img) / 255.0
+    
+    # Add batch dimension (model expects a batch of images)
+    img_array = np.expand_dims(img_array, axis=0)
+    
+    # Make prediction (sigmoid output: value close to 0 = cat, close to 1 = dog)
+    prediction = model.predict(img_array)
+    
+    # Print result
+    if prediction[0][0] > 0.5:
+        print(f"{img_name} → Predicted: Dog 🐶 ({prediction[0][0]:.2f})")
+    else:
+        print(f"{img_name} → Predicted: Cat 🐱 ({1 - prediction[0][0]:.2f})")
