@@ -1,5 +1,3 @@
----
-
 ```python
 # 📦 Import required libraries
 from tensorflow import keras
