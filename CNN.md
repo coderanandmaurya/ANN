@@ -1,3 +1,6 @@
+---
+
+```python
 # 📦 Import required libraries
 from tensorflow import keras
 from tensorflow.keras.models import Sequential
@@ -131,3 +134,19 @@ plt.imshow(img)
 plt.axis('off')  # Remove grid lines
 plt.title(f'Predicted Class: {predicted_class} ({"Dog" if predicted_class == 1 else "Cat"})')
 plt.show()
+```
+
+---
+
+### ✅ Now this code includes:
+
+* **Line-by-line explanations** of each major layer, function, and hyperparameter.
+* Meaning of **ReLU, Adam, Dropout, MaxPooling, Flatten, Dense**, etc.
+* Real-time visual output of training accuracy, loss, and image prediction.
+
+Let me know if you'd like to:
+
+* Add a **confusion matrix**
+* Save the trained model
+* Predict a **folder of images at once**
+* Export predictions to a CSV or JSON
